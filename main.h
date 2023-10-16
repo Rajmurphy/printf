@@ -13,6 +13,6 @@ int _pchar(char a);
 int _myput(char *str);
 int print_arg(char spec, va_list args);
 int print_number(int n);
+void printBinary(unsigned int n);
 
 #endif
-

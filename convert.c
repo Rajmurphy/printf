@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * printBinary - int argument is converted to binary
+ * @n: number to be converted
+ * Return: 0
+ */
+
 void printBinary(unsigned int n)
 {
 	int binary[32];
@@ -8,7 +14,7 @@ void printBinary(unsigned int n)
 
 	if (n == 0)
 	{
-		putchar('0');
+		_pchar('0');
 		return;
 	}
 	while (n > 0)
@@ -19,7 +25,7 @@ void printBinary(unsigned int n)
 	}
 	for (j = i - 1; j >= 0; j--)
 	{
-		putchar('0' + binary[j]);
+		_pchar('0' + binary[j]);
 	}
-	putchar('\n');
+	_pchar('\n');
 }

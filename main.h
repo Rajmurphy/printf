@@ -14,5 +14,6 @@ int _myput(char *str);
 int print_arg(char spec, va_list args);
 int print_number(int n);
 void printBinary(unsigned int n);
+char *_reverse(char *str);
 
 #endif

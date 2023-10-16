@@ -12,11 +12,14 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_list args;
+
 	int count = 0;
+	int i, len;
+	char spec;
 
 	va_start(args, format);
 
-	for (int i = 0; format[i] != '\0'; i++)
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
@@ -31,59 +34,44 @@ int _printf(const char *format, ...)
 		else if (format[i] == '%' && format[i + 1] != '%')
 		{
 			i++;
-			count += print_arg(format[i], args);
+			spec = format[i];
+
+			if (spec == 'c')
+			{
+				_pchar(va_arg(args,  int));
+				count++;
+			}
+			else if (spec == 's')
+			{
+				char *str = va_arg(args, char *);
+				if (str == NULL)
+					str = "(null)";
+				len = 0;
+
+				while (str[len])
+				{
+					_pchar(str[len]);
+					len++;
+				}
+				count += len;
+			}
+			else if (spec == 'd' || spec == 'i')
+			{
+				int num = va_arg(args, int);
+				count += print_number(num);
+			}
 		}
 		else if (format[i] == '%' && format[i + 1] == '%')
 		{
 			_pchar('%');
 			count++;
+
 			i++;
 		}
 	}
 
 	va_end(args);
 	return (count);
-}
-
-/**
-* print_arg - Print an argument based on format specifier
-* @spec: Format specifier
-* @args: va_list containing the argument
-* Return: Number of characters printed
-*/
-int print_arg(char spec, va_list args)
-{
-	if (spec == 'c')
-	{
-		_pchar(va_arg(args, int));
-		return (1);
-	}
-
-	if (spec == 's')
-	{
-		char *str = va_arg(args, char *);
-
-		if (str == NULL)
-			str = "(null)";
-
-		int len = 0;
-
-		while (str[len])
-		{
-			_pchar(str[len]);
-			len++;
-		}
-		return (len);
-	}
-	if (spec == 'd' || spec == 'i')
-	{
-		int num = va_arg(args, int);
-		int len = print_number(num);
-
-		return (len);
-	}
-
-	return (0); /* Handle additional specifiers here */
 }
 
 /**

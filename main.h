@@ -18,5 +18,8 @@ int print_arg(char spec, va_list args);
 int print_number(int n);
 void printBinary(unsigned int n);
 char *_reverse(char *str);
+int print_hex_number(unsigned int n, char spec);
+int print_octal_number(unsigned int n);
+int print_unsigned_number(unsigned int n);
 
 #endif

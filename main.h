@@ -18,15 +18,5 @@ int print_arg(char spec, va_list args);
 int print_number(int n);
 void printBinary(unsigned int n);
 char *_reverse(char *str);
-int print_hexa_upper(va_list types, char buffer[], int flags, int width, int precision, int size);
-int print_hexadecimal(va_list types, char buffer[], int flags, int width, int precision, int size);
-int print_octal(va_list types, char buffer[], int flags, int width, int precision, int size);
-int print_unsigned(va_list types, char buffer[], int flags, int width, int precision, int size);
-int print_base(va_list types, char map_to[], char buffer[],
-              int flags, char flag_ch, int base, int width, int precision, int size);
-int write_unsgnd(int fd, int i, char buffer[], int flags, int width, int precision, int size);
-unsigned long int convert_size_unsgnd(unsigned long int num, int size);
-int write_unsignd(int fd, int i, char buffer[], int flags, int width, int precision, int size);
-
 
 #endif

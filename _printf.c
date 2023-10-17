@@ -50,3 +50,29 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
+
+/**
+ * _reverse - Reverses a string
+ * @str: The string to reverse
+ * Return: Pointer to the reversed string
+ */
+char *_reverse(char *str)
+{
+	int i, j, len = 0;
+	char temp;
+
+	if (str == NULL)
+		return (NULL);
+
+	while (str[len])
+		len++;
+
+	for (i = 0, j = len - 1; i < j; i++, j--)
+	{
+		temp = str[i];
+		str[i] = str[j];
+		str[j] = temp;
+	}
+
+	return (str);
+}

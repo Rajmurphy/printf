@@ -13,5 +13,10 @@ int _pchar(char a);
 int _myput(char *str);
 int print_arg(char spec, va_list args);
 int print_number(int n);
+<<<<<<< HEAD
+=======
+void printBinary(unsigned int n);
+char *_reverse(char *str);
+>>>>>>> b346efd01ac457a86009d72c836d54133a0db696
 
 #endif

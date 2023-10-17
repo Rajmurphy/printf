@@ -14,13 +14,13 @@
  * @flag_ch: The character for flags (e.g., 'x' for hex)
  * Returns: Number of characters printed.
  */
-
 unsigned long int convert_size_unsgnd(unsigned long int num, int size);
 int write_unsignd(int fd, int i, char buffer[], int flags, int width, int precision, int size);
 
 /**
  * Print a number in the specified base
  */
+<<<<<<< HEAD
 int print_base(va_list types, char map_to[], char buffer[],
               int flags, char flag_ch, int base, int width, int precision, int size)
 {
@@ -28,6 +28,8 @@ int print_base(va_list types, char map_to[], char buffer[],
 int print_number_base(va_list types, char buffer[], int flags, int width, 
 		int precision, int size, int base, const char *map_to, char flag_ch)
 {
+
+int print_number_base(va_list types, char buffer[], int flags, int width, int precision, int size, int base, const char *map_to, char flag_ch) {
     int i = BUFF_SIZE - 2;
     unsigned long int num = va_arg(types, unsigned long int);
     unsigned long int init_num = num;

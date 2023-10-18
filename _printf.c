@@ -38,14 +38,6 @@ int _printf(const char *format, ...)
 				for (j = 0; str[j] != '\0'; j++)
 					count += _pchar(str[j]);
 			}
-			else if (spec == 'd' || spec == 'i')
-				count += print_number(va_arg(args, int));
-			else if (spec == 'u')
-				count += print_unsigned_number(va_arg(args, unsigned int));
-			else if (spec == 'o')
-				count += print_octal_number(va_arg(args, unsigned int));
-			else if (spec == 'x' || spec == 'X')
-				count += print_hex_number(va_arg(args, unsigned int), spec);
 		}
 		else if (format[i] == '%' && format[i + 1] == '%')
 		{
@@ -58,6 +50,26 @@ int _printf(const char *format, ...)
 }
 
 /**
+ * handle_specifier - Handle different format specifiers
+ * @spec: Format specifier
+ * @args: Argument list
+ * Return: Number of characters printed
+ */
+int handle_specifier(char spec, va_list args)
+{
+	int count = 0;
+
+	if (spec == 'd' || spec == 'i')
+		count += print_number(va_arg(args, int));
+	else if (spec == 'u')
+		count += print_unsigned_number(va_arg(args, unsigned int));
+	else if (spec == 'o')
+		count += print_octal_number(va_arg(args, unsigned int));
+	else if (spec == 'x' || spec == 'X')
+		count += print_hex_number(va_arg(args, unsigned int), spec);
+	return (count);
+}
+/**
  * print_unsigned_number - Print an unsigned integer
  * @n: Unsigned integer to print
  * Return: Number of characters printed
@@ -65,6 +77,7 @@ int _printf(const char *format, ...)
 int print_unsigned_number(unsigned int n)
 {
 	int count = 0;
+
 	if (n / 10)
 		count += print_unsigned_number(n / 10);
 	_pchar(n % 10 + '0');
@@ -81,9 +94,8 @@ int print_octal_number(unsigned int n)
 {
 	int count = 0;
 
-	if (n / 8)
-	    count += print_octal_number(n / 8);
-	_pchar(n % 8 + '0');
+	count += (n / 8) ? print_octal_number(n / 8) : 0;
+	_pchar (n % 8 + '0');
 	count++;
 	return (count);
 }

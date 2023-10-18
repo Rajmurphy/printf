@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 {
 
 	va_list args;
-	int i, j, count = 0;
+	int i, count = 0;
 	char spec;
 
 	if (format == NULL)
@@ -27,17 +27,7 @@ int _printf(const char *format, ...)
 			i++;
 			spec = format[i];
 
-			if (spec == 'c')
-				count += _pchar(va_arg(args, int));
-			else if (spec == 's')
-			{
-				char *str = va_arg(args, char *);
-
-				if (str == NULL)
-					str = "(null)";
-				for (j = 0; str[j] != '\0'; j++)
-					count += _pchar(str[j]);
-			}
+			count += handle_specifier(spec, args);
 		}
 		else if (format[i] == '%' && format[i + 1] == '%')
 		{
@@ -57,8 +47,19 @@ int _printf(const char *format, ...)
  */
 int handle_specifier(char spec, va_list args)
 {
-	int count = 0;
+	int j, count = 0;
 
+	if (spec == 'c')
+		count += _pchar(va_arg(args, int));
+	else if (spec == 's')
+	{
+		char *str = va_arg(args, char *);
+
+		if (str == NULL)
+			str = "(null)";
+		for (j = 0; str[j] != '\0'; j++)
+			count += _pchar(str[j]);
+	}
 	if (spec == 'd' || spec == 'i')
 		count += print_number(va_arg(args, int));
 	else if (spec == 'u')

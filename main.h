@@ -21,5 +21,6 @@ char *_reverse(char *str);
 int print_hex_number(unsigned int n, char spec);
 int print_octal_number(unsigned int n);
 int print_unsigned_number(unsigned int n);
+int handle_specifier(char spec, va_list args);
 
 #endif
